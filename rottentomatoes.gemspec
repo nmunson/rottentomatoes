@@ -3,7 +3,7 @@ require File.expand_path("../lib/rottentomatoes/version", __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = "rottentomatoes"
-  s.version     = Rottentomatoes::VERSION
+  s.version     = RottenTomatoes::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Nicholas Munson"]
   s.email       = ["nmunson@gmail.com"]
@@ -15,6 +15,8 @@ Gem::Specification.new do |s|
   s.rubyforge_project         = "rottentomatoes"
 
   s.add_development_dependency "bundler", ">= 1.0.0"
+  s.add_development_dependency "rspec", "~> 2.0.0.beta.22"
+  s.add_development_dependency "webmock", ">= 1.6.2"
   s.add_dependency "deepopenstruct", ">= 0.1.2"
   s.add_dependency "json"
 
