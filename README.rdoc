@@ -35,7 +35,7 @@ RottenTomatoes provides one main object that you will use to query the API
   
 Use the find() method which accepts a number of options:
 
-  TmdbMovie.find(:id => 123, :title => "Fight Club", :limit => 10, :expand_results => true)
+  RottenMovie.find(:id => 123, :title => "Fight Club", :limit => 10, :expand_results => true)
 
 
 [:id]              specifies an individual movie via it's RottenTomatoes id
