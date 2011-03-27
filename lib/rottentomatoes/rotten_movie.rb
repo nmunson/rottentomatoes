@@ -8,21 +8,7 @@ module RottenTomatoes
       results = []
       results << Rotten.api_call("movies", options)
 
-      results.flatten!
-      results.compact!
-
-      unless (options[:limit].nil?)
-        raise ArgumentError, "Limit must be an integer greater than 0" if (!options[:limit].is_a?(Fixnum) || !(options[:limit] > 0))
-        results = results.slice(0, options[:limit])
-      end
-
-      results.map!{|m| RottenMovie.new(m, options[:expand_results])}
-
-      if (results.length == 1)
-        return results[0]
-      else
-        return results
-      end		
+      return Rotten.process_results(results, options)
     end
 
     def self.new(raw_data, expand_results = false)
