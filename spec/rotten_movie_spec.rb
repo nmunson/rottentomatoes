@@ -48,6 +48,8 @@ describe RottenMovie do
     it "should return the full movie data when expand_results set to true and searching by title" do
       movie = RottenMovie.find(:title => "Fight Club", :limit => 1, :expand_results => true)
       movie.mpaa_rating.should == "R"
+      movie.cast.should_not be_nil 
+      movie.reviews.first.should_not be_nil 
     end
 
     it "should show movies found with the same data as equal" do
