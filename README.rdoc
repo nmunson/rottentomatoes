@@ -8,7 +8,6 @@ rottentomatoes is an ActiveRecord-style API wrapper for {RottenTomatoes.com}[htt
   
 === Example
 
-  require 'rubygems'
   require 'rottentomatoes'
   include RottenTomatoes
   
@@ -29,11 +28,14 @@ rottentomatoes is an ActiveRecord-style API wrapper for {RottenTomatoes.com}[htt
   
 === Usage
 
-RottenTomatoes provides one main object that you will use to query the API
+RottenTomatoes provides two main object that you will use to query the API.
   
   RottenMovie
+  RottenList
+
+These objects provide access to movies and lists of movies respectively.
   
-Use the find() method which accepts a number of options:
+Each object provides a find() method which accepts a number of options:
 
   RottenMovie.find(:id => 123, :title => "Fight Club", :limit => 10, :expand_results => true)
 
@@ -43,6 +45,12 @@ Use the find() method which accepts a number of options:
 [:limit]           specifies the maximum number of results to be returned
 [:expand_results]  The RottenTomatoes API by default returns only partial info for any API method that can return multiple results, or single movie lookups. When :expand_results is set to true rottentomatoes automatically makes extra API calls to fetch the full information for each item, such as the full cast and reviews. This can result in *very* slow requests though. If you need extra information for a search listing then set this to true. Defaults to 'false'.  On average the overhead of the extra lookups takes 4x longer to return info.
   
+
+  RottenList.find(:type => "upcoming", :limit => 10, :expand_results => true)
+
+[:type]            specifies a list type to retrieve.  Valid options are 'box_office', 'in_theaters', 'opening', 'upcoming', 'new_releases'.
+[:limit]           see RottenMovie
+[:expand_results]  see RottenMovie
 
 === Usage Examples
 
@@ -61,6 +69,10 @@ Find a single movie by its RottenTomatoes ID:
 Find a single movie and all associated information
 
   @movie = RottenMovie.find(:title => 'Fight Club', :expand_results => true, :limit => 1)
+
+Find movies that are playing in theatres
+
+  @movie = RottenList.find(:type => 'in_theaters')
   
 === Item information
   
@@ -77,5 +89,6 @@ To find out more about the information each object offers on retrieved items hav
 === Author & Credits
 
 Author:: {Nicholas Munson}[mailto:nmunson@gmail.com]
+Credits:: {Aaron Gough}[http://thingsaaronmade.com]
 
 Copyright (c) 2011 {Nicholas Munson}[http://nmunson.com/] ({nmunson.com}[http://nmunson.com/]), released under the MIT license
