@@ -28,13 +28,13 @@ describe Rotten do
     old_key = Rotten.api_key
     lambda { 
       Rotten.api_key = ""
-      Rotten.api_call("movies", "Fight Club") 
+      Rotten.api_call("movies", :title => "Fight Club") 
     }.should raise_error(ArgumentError)
     Rotten.api_key = old_key
   end
 
-  it "should search and return an array of results" do
-    movies = Rotten.api_call("movies", "Fight Club")
+  it "should return an array of results when searching by title" do
+    movies = Rotten.api_call("movies", :title => "Fight Club")
     movies.should be_a_kind_of Array
     movies.length.should have_at_least(5).things
     movies.each do |movie|
@@ -42,13 +42,19 @@ describe Rotten do
     end
   end
 
-  it "should return nil for a failed API call" do
-    movies = Rotten.api_call("unknown", "Fight Club")
-    movies.should == nil
+  it "should return a hash when searching by id" do
+    movies = Rotten.api_call("movies", :id => 12132)
+    movies.should be_a_kind_of Hash
   end
 
-  it "should return nil for a search that returns no results" do
-    movies = Rotten.api_call("movies", "xxxxxxx")
+  it "should raise an exception for a failed API call" do
+    lambda {
+      movies = Rotten.api_call("unknown", :title => "Fight Club")
+    }.should raise_error(ArgumentError)
+  end
+
+  it "should return nil for a search that returns no results when searching by title" do
+    movies = Rotten.api_call("movies", :title => "xxxxxxx")
     movies.should == nil
   end
 

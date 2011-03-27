@@ -23,16 +23,24 @@ module RottenTomatoes
       "http://api.rottentomatoes.com/api/public/v1.0/"
     end
     
-    def self.api_call(method, data)
+    def self.api_call(method, options)
       raise ArgumentError, "Rotten.api_key must be set before you can use the API" if(@@api_key.nil? || @@api_key.empty?)
-      url = base_api_url + method + ".json?apikey=" + @@api_key + "&q=" + CGI::escape(data.to_s)
+      raise ArgumentError, "You must specify 'movies' as the method" if (method != "movies")
+
+      url = base_api_url + method
+
+      url += "/" + options[:id].to_s if (method == "movies" && !options[:id].nil?)
+      url += ".json?apikey=" + @@api_key 
+      url += "&q=" + CGI::escape(options[:title].to_s) if (method == "movies" && !options[:title].nil? && options[:id].nil?)
+      
       response = get_url(url)
       return nil if(response.code.to_i != 200)
       body = JSON(response.body)
-      if (body["total"] == 0)
+      if (body["total"] == 0 && body["title"].nil?)
         return nil
       else
-        return body["movies"]
+        return body["movies"] if !body["total"].nil?
+        return body
       end
     end
 

@@ -1,4 +1,5 @@
 pkg/*
 *.gem
 *.swp
+test.rb
 .bundle
