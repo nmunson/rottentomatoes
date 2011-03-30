@@ -8,6 +8,7 @@ rottentomatoes is an ActiveRecord-style API wrapper for {RottenTomatoes.com}[htt
   
 === Example
 
+  require 'rubygems'
   require 'rottentomatoes'
   include RottenTomatoes
   
