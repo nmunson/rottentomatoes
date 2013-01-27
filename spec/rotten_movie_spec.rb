@@ -40,8 +40,18 @@ describe RottenMovie do
       movie.should be_a_kind_of OpenStruct
     end
 
+    it "should return a single movie when searching by imdb id" do
+      movie = RottenMovie.find(:imdb => 137523)
+      movie.should be_a_kind_of OpenStruct
+    end
+
     it "should return the full movie data when searching by id" do
       movie = RottenMovie.find(:id => 13153)
+      movie.mpaa_rating.should == "R"
+    end
+
+    it "should return the full movie data when searching by imdb id" do
+      movie = RottenMovie.find(:imdb => 137523)
       movie.mpaa_rating.should == "R"
     end
 

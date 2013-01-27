@@ -18,6 +18,9 @@ rottentomatoes is an ActiveRecord-style API wrapper for {RottenTomatoes.com}[htt
   @movie = RottenMovie.find(:title => "Fight Club", :limit => 1)
   # => <OpenStruct>
   
+  @movie = RottenMovie.find(:imdb => 137523)
+  # => <OpenStruct>
+
   @movie.title
   # => "Fight Club"
   
@@ -42,6 +45,7 @@ Each object provides a find() method which accepts a number of options:
 
 
 [:id]              specifies an individual movie via it's RottenTomatoes id
+[:imdb]            specifies an individual movie via it's IMDb id
 [:title]           specifies a query string to look for in the movie titles
 [:limit]           specifies the maximum number of results to be returned
 [:expand_results]  The RottenTomatoes API by default returns only partial info for any API method that can return multiple results, or single movie lookups. When :expand_results is set to true rottentomatoes automatically makes extra API calls to fetch the full information for each item, such as the full cast and reviews. This can result in *very* slow requests though. If you need extra information for a search listing then set this to true. Defaults to 'false'.  On average the overhead of the extra lookups takes 4x longer to return info.
@@ -66,6 +70,10 @@ Find the movie most likely to be associated with a given title:
 Find a single movie by its RottenTomatoes ID:
 
   @movie = RottenMovie.find(:id => 13153)
+
+Find a single movie by its IMDb ID:
+
+  @movie = RottenMovie.find(:imdb => 137523)
 
 Find a single movie and all associated information
 
