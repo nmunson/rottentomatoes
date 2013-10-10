@@ -66,7 +66,7 @@ module RottenTomatoes
 
       results.map!{|m| RottenMovie.new(m, options[:expand_results])}
 
-      if (results.length == 1)
+      if (options[:id] || options[:imdb] || options[:limit] == 1)
         return results[0]
       else
         return results
