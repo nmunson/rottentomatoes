@@ -42,6 +42,7 @@ module RottenTomatoes
       url += "?apikey=" + @@api_key 
       url += "&q=" + CGI::escape(options[:title].to_s) if (method == "movies" && !options[:title].nil? && options[:id].nil?)
       url += "&type=imdb&id=%07d" % options[:imdb].to_i if (method == "movie_alias")
+      url += "&page=%d" % options[:page].to_i if options[:page]
 
       response = get_url(url)
       return nil if(response.code.to_i != 200)
