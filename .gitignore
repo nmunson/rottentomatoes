@@ -3,3 +3,6 @@ pkg/*
 *.swp
 test.rb
 .bundle
+/.idea
+*.iml
+/spec/setup/rottentomatoes_api_key.txt
