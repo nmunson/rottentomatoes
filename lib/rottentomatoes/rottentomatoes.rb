@@ -75,8 +75,11 @@ module RottenTomatoes
 
     def self.get_url(uri_str, limit = 10)
       return false if limit == 0
-      begin 
-        response = Net::HTTP.get_response(URI.parse(uri_str))
+      uri = URI.parse(uri_str)
+      begin
+        response = Net::HTTP.start(uri.host, uri.port) do |http|
+          http.get((uri.path.empty? ? '/' : uri.path) + (uri.query ? '?' + uri.query : ''))
+        end
       rescue SocketError, Errno::ENETDOWN
         response = Net::HTTPBadRequest.new( '404', 404, "Not Found" )
         return response

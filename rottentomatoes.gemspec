@@ -15,8 +15,9 @@ Gem::Specification.new do |s|
   s.rubyforge_project         = "rottentomatoes"
 
   s.add_development_dependency "bundler", ">= 1.0.0"
-  s.add_development_dependency "rspec", "~> 2.0.0.beta.22"
+  s.add_development_dependency "rspec", "~> 2.14.1"
   s.add_development_dependency "webmock", ">= 1.6.2"
+
   s.add_dependency "deepopenstruct", ">= 0.1.2"
   s.add_dependency "json"
 
