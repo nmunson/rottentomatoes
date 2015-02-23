@@ -34,7 +34,7 @@ module RottenTomatoes
       end
 
       if (method == "lists")
-        url += (options[:type] == "new_releases") ? "/dvds/" : "/movies/"
+        url += (options[:type] == "new_releases" || options[:type] == "top_rentals") ? "/dvds/" : "/movies/"
         url += options[:type]
       end
       

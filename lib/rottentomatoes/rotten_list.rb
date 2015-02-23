@@ -4,7 +4,7 @@ module RottenTomatoes
 
     def self.find(options)
       raise ArgumentError, ":type must be set" if (options[:type].nil?)
-      if !["box_office", "in_theaters", "opening", "upcoming", "new_releases"].include?(options[:type])
+      if !["box_office", "in_theaters", "opening", "upcoming", "new_releases", "top_rentals"].include?(options[:type])
         raise ArgumentError, ":type must be a recognized format"
       end
 

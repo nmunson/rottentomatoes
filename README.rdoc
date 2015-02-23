@@ -53,7 +53,7 @@ Each object provides a find() method which accepts a number of options:
 
   RottenList.find(:type => "upcoming", :limit => 10, :expand_results => true)
 
-[:type]            specifies a list type to retrieve.  Valid options are 'box_office', 'in_theaters', 'opening', 'upcoming', 'new_releases'.
+[:type]            specifies a list type to retrieve.  Valid options are 'box_office', 'in_theaters', 'opening', 'upcoming', 'new_releases', 'top_rentals'.
 [:limit]           see RottenMovie
 [:expand_results]  see RottenMovie
 
