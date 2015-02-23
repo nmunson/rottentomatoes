@@ -3,10 +3,10 @@ module RottenTomatoes
   class RottenMovie
     
     def self.find(options)
-      raise ArgumentError, "You must search by title or id" if (options[:title].nil? && options[:id].nil?)
+      raise ArgumentError, "You must search by title, id or imdb id" if (options[:title].nil? && options[:id].nil? && options[:imdb].nil?)
 
       results = []
-      results << Rotten.api_call("movies", options)
+      results << Rotten.api_call(options[:imdb].nil? ? "movies" : "movie_alias", options)
 
       return Rotten.process_results(results, options)
     end

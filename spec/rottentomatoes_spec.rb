@@ -36,7 +36,7 @@ describe Rotten do
   it "should return an array of results when searching by title" do
     movies = Rotten.api_call("movies", :title => "Fight Club")
     movies.should be_a_kind_of Array
-    movies.length.should have_at_least(5).things
+    movies.length.should have_at_least(3).things
     movies.each do |movie|
       movie.should be_a_kind_of Hash
     end
