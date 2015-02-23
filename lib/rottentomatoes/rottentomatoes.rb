@@ -41,6 +41,7 @@ module RottenTomatoes
       url += ".json" if (url[-5, 5] != ".json")
       url += "?apikey=" + @@api_key 
       url += "&q=" + CGI::escape(options[:title].to_s) if (method == "movies" && !options[:title].nil? && options[:id].nil?)
+      url += "&limit=" + options[:limit].to_s if (options[:limit].is_a? Integer)
       
       response = get_url(url)
       return nil if(response.code.to_i != 200)
