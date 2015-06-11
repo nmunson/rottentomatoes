@@ -45,7 +45,7 @@ module RottenTomatoes
       url += "&type=imdb&id=%07d" % options[:imdb].to_i if (method == "movie_alias")
 
       response = get_url(url)
-      return nil if(response.code.to_i != 200)
+      return nil if(response == false || response.code.to_i != 200)
       body = JSON(response.body)
 
       if (body["total"] == 0 && body["title"].nil?)
