@@ -28,6 +28,12 @@ describe RottenMovie do
       movies.each do |movie|
         movie.should be_a_kind_of OpenStruct
       end
+
+      movies = RottenMovie.find(:title => "Eternal Sunshine")
+      movies.should be_a_kind_of Array
+      movies.each do |movie|
+        movie.should be_a_kind_of OpenStruct
+      end
     end
 
     it "should return a single movie when limit=1 and searching by title" do
